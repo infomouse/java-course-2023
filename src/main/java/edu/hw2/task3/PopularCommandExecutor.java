@@ -14,13 +14,13 @@ public final class PopularCommandExecutor {
     }
 
     public void tryExecute(String command) {
-        int lefAttempts = maxAttempts;
-        while (lefAttempts > 0) {
+        int leftAttempts = maxAttempts;
+        while (leftAttempts > 0) {
             try (Connection connection = manager.getConnection()) {
                 connection.execute(command);
                 return;
             } catch (ConnectionException e) {
-                if (--lefAttempts == 0) {
+                if (--leftAttempts == 0) {
                     throw new ConnectionException("Exceed attempts limit", e);
                 }
             } catch (Exception e) {
